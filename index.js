@@ -42,7 +42,7 @@ export default class Carousel extends Component {
 
     componentDidMount() {
         if (this.props.children && this.props.initialPage > 0 && this.props.initialPage < this.props.children.length) {
-            this.goToPage(this.props.initialPage);
+            this.goToPage(this.props.initialPage,false);
         }
     }
 
@@ -72,11 +72,11 @@ export default class Carousel extends Component {
         this.setState({gap: gap});
     }
 
-    goToPage(position) {
+    goToPage(position,animated) {
         let { pageWidth } = this.props;
         let { gap } = this.state;
         let pagePosition = position * (pageWidth + gap);
-        this.scrollView.scrollTo({ y: 0, x: pagePosition });
+        this.scrollView.scrollTo({ y: 0, x: pagePosition, animated:animated });
         this._onPageChange(position);
     }
 
@@ -133,7 +133,7 @@ export default class Carousel extends Component {
                 return (
                     <TouchableWithoutFeedback
                         key={ index }
-                        onPress={ () => this.goToPage(index) }
+                        onPress={ () => this.goToPage(index,true) }
                     >
                         <View
                             style={ [ styles.page, computedStyles.page, this.props.pageStyle ] }
