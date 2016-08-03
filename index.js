@@ -149,7 +149,7 @@ export default class Carousel extends Component {
             <View style={ styles.container }>
                 <ScrollView
                     automaticallyAdjustContentInsets={ false }
-                    bounces
+                    bounces={false}
                     contentContainerStyle={ [ computedStyles.scrollView ] }
                     decelerationRate={ 0.9 }
                     horizontal
